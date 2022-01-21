@@ -4,11 +4,12 @@ import './App.css';
 class App extends Component {
   constructor() {
     super();
-    this.state = {
-      monsters: [ { id: 0, name: "Frankenstein" },
-                  { id: 1, name: "Dracula" },
-                  { id: 2, name: "Zombie" } ]
-    };
+    this.state = { monsters: [] };
+  }
+
+  // Lifecycle Event Called When Component Is Mounted (Rendered On DOM).
+  componentDidMount() {
+    fetch("https://jsonplaceholder.typicode.com/users").then(response => response.json()).then(users => this.setState({monsters: users}));
   }
 
   render() {
